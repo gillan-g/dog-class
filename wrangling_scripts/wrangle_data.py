@@ -32,7 +32,7 @@ def path_to_tensor(img_path):
       # convert 3D tensor to 4D tensor with shape (1, 224, 224, 3) and return 4D tensor
       return np.expand_dims(x, axis=0)
 
-def dog_class_model(path_to_weights='\\wrangling_scripts\\weights.best.resnet50.hdf5'):
+def dog_class_model(path_to_weights='/wrangling_scripts/weights.best.resnet50.hdf5'):
 
     model = Sequential()
     model.add(Flatten(input_shape=(1,1,2048)))
@@ -66,7 +66,7 @@ def predict_dog_breed(img_path):
     predicted_vector = classification_model.predict(img_res50_bottleneck_features)
     K.clear_session()
     # return dog breed that is predicted by the model
-    dog_names = list(np.load(os.getcwd()+'\\wrangling_scripts\\dog_names.npy'))
+    dog_names = list(np.load(os.getcwd()+'/wrangling_scripts/dog_names.npy'))
     print(f"confidence: {predicted_vector.max()}%")
 
     probability = predicted_vector.max()
