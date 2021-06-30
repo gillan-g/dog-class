@@ -1,13 +1,12 @@
-# Disaster Response Pipeline Project
+# Dog breed classification project
 
 ### Description
-During a disaster the need for fast and accurate response is essential to save lifes.
-A pain during such unfotunate incidences is the need to process high volume of information passed through social media, 
-filter relevant information and delegate the information to relevant teams.
-
-This application is a dummy attempt to create a solution for the above. 
-
-The empty field accepts a text message, classifies it as relevant to a disaster or not, and outputs to the user the message tag.   
+This projcect uses convolutional neural network and transfer learning based on Resnet50 model to perform dog breed classification.
+The project is uploaded to the web, and allows an easy interface to paste an image URL and perform the breed prediction.
+The classification output:
+- Image is human or dog
+- What dog breed is claddified (regardless if image is human or dog)
+- What confidence the algorithm has in the dog breed classification
 
 ### Dependencies
 - See requirements.txt file for dependencies
@@ -16,30 +15,19 @@ The empty field accepts a text message, classifies it as relevant to a disaster 
 ### Instructions:
 Go to: https://dog-class-gillan.herokuapp.com/
 
-### File Descriptions
-
 ### Data flow overview
-This project performs the following steps:
-ETL pipeline:
-- Read csv files as input
-- Transform and clean data into useable format
-- Load tables to SQLite DB
+Dog or human classification was performed by OpenCV's implementation of Haar feature-based cascade classifiers to detect human faces in images.
+Then to obtain the dog beed classification, the image is preprocessed and passed through a Resnet50 network.
+All stages were implamented using the Keras API, specifically:
+keras.applications.resnet50:
+  - ResNet50
+  - preprocess_input
 
-NLP ML pipeline
-- Load input data from SQLite DB
-- Tokenize text messages and use Tfidf transformation
-- Split into train and test datasets 
-- Apply MultiOutputClassifier on all classification targets using GradientBoostingClassifier  
-- Optimize parameters using GridsearchCV
-- Evaluate model classifiaction score
-- Save model as a pickel file for future use
-
-Finally, the application is called using Flask framework.
-
-### Image of the web app:
+Once all the image features were extracted, the data is passed through a CNN:
 ![image](https://user-images.githubusercontent.com/69136925/123932307-fcd56800-d999-11eb-8f94-e9a26c5bd146.png)
 
+These network hyper-parameters were selected by Using the scikit-learn GridSearchCV and KerasClassifier
+wrappers to optimize model hyperparameters
+
+### Image of the web app:
 ![image](https://user-images.githubusercontent.com/69136925/123932512-33ab7e00-d99a-11eb-947e-3945da69a1e9.png)
-
-### Licensing, Acknowledgements
-
