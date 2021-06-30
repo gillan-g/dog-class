@@ -3,10 +3,10 @@
 
 {% block message %}
     <hr />
-    <h4 class="text-center">Path entered: {{query}}</h4>
-    <h1 class="text-center"><i>What we detected: {{is_human}}</i></p>
-    <h1 class="text-center"><i>Dog classified as: {{classification_result}}</i></p>
-    <h1 class="text-center"><i>Classifier certainty (0-1): {{classification_probability}}</i></p>
+    <h4 class="text-center">URL: {{query}}</h4>
+    <h1 class="text-center"><i>Detected: {{is_human}}</i></p>
+    <h1 class="text-center"><i>Looks like: {{classification_result}}</i></p>
+    <h1 class="text-center"><i>Confidence % (0-1): {{classification_probability}}</i></p>
     <img src={{query}} alt="Responsive image" class="img-fluid ">
 {% endblock %}
 
