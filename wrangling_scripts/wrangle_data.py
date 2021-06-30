@@ -12,6 +12,11 @@ from glob import glob
 import random
 from keras.applications.resnet50 import ResNet50, preprocess_input
 from keras import backend as K
+import urllib.request
+import cv2
+
+
+
 
 
 from io import BytesIO
@@ -73,19 +78,21 @@ def predict_dog_breed(img_path):
     breed_name = dog_names[np.argmax(predicted_vector)].split('.')[1]
     return breed_name, probability
 
-# def return_dog_breed(URL):
-#     # this function accepts a url to an image
-#     # returns the dog breed classification and certainty
-#     # INPUT:
-#     #     URL (string): url to image
-#     # OUTPUT:
-#     #     breed (string): what dog breed is shown in the image
-#     #     detection_probability (string): certainty prbability 
-#     #     the algorithm has een able to detect the correct breed
+def url_to_image(url, readFlag=cv2.IMREAD_COLOR):
+    # download the image, convert it to a NumPy array, and then read
+    # it into OpenCV format
+    resp = urllib.request.urlopen(url)
+    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    image = cv2.imdecode(image, readFlag)
 
-#     resnet50_model = dog_class_model()
+    # return the image
+    return image
 
-#     breed, detection_probability = predict_dog_breed(URL,resnet50_model)
-
-#     return breed, detection_probability
+def face_detector_from_url(url):
+    image = url_to_image(url)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    face_cascade = cv2.CascadeClassifier(os.getcwd() + '/wrangling_scripts//haarcascade_frontalface_alt.xml')
+    face_cascade.detectMultiScale(gray)
+    faces = face_cascade.detectMultiScale(gray)
+    return len(faces) > 0
 

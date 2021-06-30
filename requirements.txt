@@ -33,3 +33,4 @@ Keras==2.0.9
 glob2==0.5
 Pillow==4.2.1
 h5py==2.7.0
+opencv-python-headless==4.2.0.32
