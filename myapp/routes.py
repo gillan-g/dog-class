@@ -19,12 +19,13 @@ def go():
 
     # classification_labels = model.predict([query])[0]
     # classification_results = dict(zip(df.columns[4:], classification_labels))
-    breed, probability = wrangling_scripts.wrangle_data.predict_dog_breed(query)
+    breed, probability, is_human = wrangling_scripts.wrangle_data.predict_dog_breed(query)
 
     # This will render the go.html Please see that file. 
     return render_template(
         'go.html',
         query=query,
         classification_result=breed,
-        classification_probability=probability
+        classification_probability=probability,
+        is_human = is_human
     )

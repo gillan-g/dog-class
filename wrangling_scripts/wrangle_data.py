@@ -59,24 +59,7 @@ def loadImage(url):
     img = np.expand_dims(img, axis=0)
     return img
   
-def predict_dog_breed(img_path):
 
-    # extract bottleneck features
-    img_res50_bottleneck_features = extract_Resnet50(loadImage(img_path))
-    K.clear_session()
-    # instantiate classification model 
-    classification_model=dog_class_model()
-
-    # obtain predicted vector
-    predicted_vector = classification_model.predict(img_res50_bottleneck_features)
-    K.clear_session()
-    # return dog breed that is predicted by the model
-    dog_names = list(np.load(os.getcwd()+'/wrangling_scripts/dog_names.npy'))
-    print(f"confidence: {predicted_vector.max()}%")
-
-    probability = predicted_vector.max()
-    breed_name = dog_names[np.argmax(predicted_vector)].split('.')[1]
-    return breed_name, probability
 
 def url_to_image(url, readFlag=cv2.IMREAD_COLOR):
     # download the image, convert it to a NumPy array, and then read
@@ -96,3 +79,32 @@ def face_detector_from_url(url):
     faces = face_cascade.detectMultiScale(gray)
     return len(faces) > 0
 
+def predict_dog_breed(img_path):
+
+
+
+    is_human = face_detector_from_url(img_path)
+    if is_human:
+        is_human = 'Human'
+    else:
+        is_human = 'Dog'
+
+
+
+
+    # extract bottleneck features
+    img_res50_bottleneck_features = extract_Resnet50(loadImage(img_path))
+    K.clear_session()
+    # instantiate classification model 
+    classification_model=dog_class_model()
+
+    # obtain predicted vector
+    predicted_vector = classification_model.predict(img_res50_bottleneck_features)
+    K.clear_session()
+    # return dog breed that is predicted by the model
+    dog_names = list(np.load(os.getcwd()+'/wrangling_scripts/dog_names.npy'))
+    print(f"confidence: {predicted_vector.max()}%")
+
+    probability = predicted_vector.max()
+    breed_name = dog_names[np.argmax(predicted_vector)].split('.')[1]
+    return breed_name, probability, is_human
