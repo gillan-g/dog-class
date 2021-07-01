@@ -1,5 +1,5 @@
 # Human Detector and Dog Breed Classifier
-Udacity data scientis nanao-degree capstone project
+Udacity data scientist nano-degree capstone project 
 
 
 ### Project Overview:
@@ -106,3 +106,6 @@ Go to: https://dog-class-gillan.herokuapp.com/
 
 ### Image of the web app:
 ![image](https://user-images.githubusercontent.com/69136925/123932512-33ab7e00-d99a-11eb-947e-3945da69a1e9.png)
+
+### Acknowledgements:
+https://www.udacity.com/
