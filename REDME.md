@@ -1,4 +1,5 @@
 # Human Detector and Dog Breed Classifier
+
 Udacity data scientist nano-degree capstone project 
 
 
@@ -27,7 +28,9 @@ Given an image
 2. what dog breed best resembles the figure in the image and at what confidence
 Here we attempt to use OpenCV pre-trained human image classifier to answer the first question.  
 For the dog breed classifier, as stated above, we will implement a deep CNN utilizing transfer learning based on Resnet50 model, and adding a top layer that shall provide the fine-tuned dog breed classification result.	
-Metrics:
+
+
+### Metrics:
 For both classification stages, accuracy was used as a metric:
 true positives / total number of predictions
 For the first prediction we had only 2 classes - human vs. dog
@@ -72,6 +75,7 @@ Hyper-parameter test space:
 - activation=['relu','sigmoid']
 
 2 CV iterations.
+
 The resulting optimal values, yielded 82% accuracy on the averaged cross validation score
 {'activation': 'sigmoid', 'batch_size': 20, 'dropout': 0, 'epochs': 20, 'layers': 1, 'nodes': 200, 'optimizer': 'RMSprop'}
 
