@@ -1,3 +1,7 @@
+# Human Detector and Dog Breed Classifier
+Udacity data scientis nanao-degree capstone project
+
+
 ### Project Overview:
 This project is an attempt to utilize transfer lerning with convolutional neural network to tackle an interesting problem.
 Provided an image, the algorithm will first classify if the image contains a human or a dog in it.
@@ -16,6 +20,7 @@ This projcect uses convolutional neural network and transfer learning based on R
 -	What dog breed is claddified (regardless if image is human or dog)
 -	What confidence the algorithm has in the dog breed classification
 	
+	
 ### The problem:
 Given an image 
 1. does the image contain a dog or a human and at what confidence
@@ -28,6 +33,7 @@ true positives / total number of predictions
 For the first prediction we had only 2 classes - human vs. dog
 For the second prediction we had 133 different classes - different possible dog breeds.	
 
+
 ### EDA:
 For the first classifier (human vs. dog) the default implementation within the assignment was used. No through EDA was performed besides evaluating the classifier accuracy metric on a dummy, pre classified, dataset. 
 
@@ -39,7 +45,9 @@ For the dog breed classification dataset, several metrics were evaluated:
 We can conclude that a rather 'symmetric' number of observations per class is provided, however, we can argue that insufficient number of overall training datasets is available. This can be solved by data augmentation. however, due to time constraints, this approach wasn't addressed in this implementation.	
 ![image](https://user-images.githubusercontent.com/69136925/124169429-ea991e00-daae-11eb-891a-13d62e4267ab.png)
 
+
 ### Data preprocessing:
+
 #### For OpenCV human classifier:
 - images converted to grayscale using cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -48,6 +56,7 @@ We can conclude that a rather 'symmetric' number of observations per class is pr
 - tensors were then pre-processed using Keras preprocess_input method	
 Implamentation:
 Resnet50 model was selected for the transfer learning process due to its relatively small size (98 MB) and due to experience.
+
 
 ### Hyper parameter tuning:
 Data was split into train, validation, and test datasets:
@@ -68,10 +77,13 @@ The resulting optimal values, yielded 82% accuracy on the averaged cross validat
 
 Final selected model:
 ![image](https://user-images.githubusercontent.com/69136925/123932307-fcd56800-d999-11eb-8f94-e9a26c5bd146.png)
+
+
 ### Results:
 Achieved accuracy on classifiers
 -	The overall testing accuracy for the OpenCV human classifier is 94.5% 
 -	The overall testing accuracy for the dog breed classifier is: 83%
+
 
 ### Conclusion and reflection
 This was an awesome project!
@@ -82,12 +94,15 @@ For future improvements:
 -	Attempt performing transfer learning wit a different base model such as VGG#, Inception and more. Looking for similar work with a background check in literature or online posts might help guide me in the right way.
 -	More optimizations, I believe the hyperparameter CV grid is rather small, and many more permutations can be tested: different optimizers, different activation functions and more.
 
+
 ### Dependencies
 - See requirements.txt file for dependencies
 - Python version: 3.6.13
 
+
 ### Instructions:
 Go to: https://dog-class-gillan.herokuapp.com/
+
 
 ### Image of the web app:
 ![image](https://user-images.githubusercontent.com/69136925/123932512-33ab7e00-d99a-11eb-947e-3945da69a1e9.png)
