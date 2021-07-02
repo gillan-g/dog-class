@@ -49,7 +49,7 @@ For the dog breed classification dataset, several metrics were evaluated:
 - Per class, mean number of observations: ~50
 - max number of observations per class: 77
 - min number of observations per class: 26
-We can conclude that a rather 'symmetric' number of observations per class is provided, however, we can argue that insufficient number of overall training datasets is available. This can be solved by data augmentation. however, due to time constraints, this approach wasn't addressed in this implementation.	
+We can conclude that class observations are imbalanced, as some classes are 3X fold larger than others. We can also argue that insufficient number of overall training datasets is available. This can be solved by data augmentation. however, due to time constraints, this approach wasn't addressed in this implementation.	
 ![image](https://user-images.githubusercontent.com/69136925/124169429-ea991e00-daae-11eb-891a-13d62e4267ab.png)
 
 
