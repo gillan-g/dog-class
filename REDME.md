@@ -31,10 +31,14 @@ For the dog breed classifier, as stated above, we will implement a deep CNN util
 
 
 ### Metrics:
-For both classification stages, accuracy was used as a metric:
-true positives / total number of predictions
+For both classification stages, 
 For the first prediction we had only 2 classes - human vs. dog
-For the second prediction we had 133 different classes - different possible dog breeds.	
+The test dataset is well balanced (100 samples of each class - human, dog)
+accuracy was used as a metric
+
+For the second prediction we had 133 different classes - different possible dog breeds.
+As this is both a multiclass dataset with imbalanced classes (as seen above, there might be up to 3X fold difference in class sizes), the F1 score metric was used with the 'weighted' seeting. From Sklearn documantation, this method is ideal for case.
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html
 
 
 ### EDA:
@@ -74,7 +78,7 @@ Hyper-parameter test space:
 - dropout=[0,0.2,0.5]
 - activation=['relu','sigmoid']
 
-2 CV iterations.
+3 CV iterations.
 
 The resulting optimal values, yielded 82% accuracy on the averaged cross validation score
 {'activation': 'sigmoid', 'batch_size': 20, 'dropout': 0, 'epochs': 20, 'layers': 1, 'nodes': 200, 'optimizer': 'RMSprop'}
@@ -84,10 +88,11 @@ Final selected model:
 
 
 ### Results:
-Achieved accuracy on classifiers
+Achieved results on classifiers:
 -	The overall testing accuracy for the OpenCV human classifier is 94.5% 
--	The overall testing accuracy for the dog breed classifier is: 83%
-
+-	The overall testing F1 for the dog breed classifier is: 83%
+Another approach that you could take would be to demonstrate that your optimized model is robust would be to perform a k-fold cross validation. In this case, you'd document how the model performs across each individual validation fold. If the validation performance is stable and doesn't fluctuate much, then you can argue that the model is robust against small perturbations in the training data.
+0.800898 (0.013211)
 
 ### Conclusion and reflection
 This was an awesome project!
