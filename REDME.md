@@ -78,11 +78,6 @@ Hyper-parameter test space:
 - dropout=[0,0.2,0.5]
 - activation=['relu','sigmoid']
 
-3 CV iterations.
-
-The resulting optimal values, yielded 82% accuracy on the averaged cross validation score
-{'activation': 'sigmoid', 'batch_size': 20, 'dropout': 0, 'epochs': 20, 'layers': 1, 'nodes': 200, 'optimizer': 'RMSprop'}
-
 Final selected model:
 ![image](https://user-images.githubusercontent.com/69136925/123932307-fcd56800-d999-11eb-8f94-e9a26c5bd146.png)
 
@@ -91,12 +86,28 @@ Final selected model:
 Achieved results on classifiers:
 -	The overall testing accuracy for the OpenCV human classifier is 94.5% 
 -	The overall testing F1 for the dog breed classifier is: 83%
-Another approach that you could take would be to demonstrate that your optimized model is robust would be to perform a k-fold cross validation. In this case, you'd document how the model performs across each individual validation fold. If the validation performance is stable and doesn't fluctuate much, then you can argue that the model is robust against small perturbations in the training data.
-0.800898 (0.013211)
+To demonstrate model robustness, and to prove the validation performance is stable and doesn't fluctuate, I performed a 3-fold cross validation during the training process. 
+The averaged individual fold validation accuracy is 80%, the averaged std is 0.01%.
+
+
+### Justification
+The assignment goal was to build a model that provides a prediction accuracy over the training data of over 60%. My model is capable to predict the desired target (dog breed) wi tn accuracy (and F1 score) of over 80%. 
+
 
 ### Conclusion and reflection
-This was an awesome project!
 Although seemed a bit overwhelming to begin with as this is my first experience with implementing a CNN, I have learned a lot along the way and was able to implement many concepts and see how almost magically create something that actually works.
+An overall overview of the implamentation process:
+- Achived a good understanding of the goal and the steps the assignemnt walks me through.
+- Exploration: reviewed the input datasets, understood the structure (shape and size) of each input.
+- Read about the APIs of each function (for building a model and pre-process the data).
+- Initial mockup on a small set of data, just to get the entire workflow up and running.
+- Knowledgeable guess of initial model parameters - build and evaluate, set a benchmark for the overall acuracy/f1 score.
+- Hyperparameter optimization - read about methods to perform, create model, test accuracy.
+- Create E2E classification workflow that includes human vs dog classification as a first step.   
+- Create Flask app, upload to web.
+- Full application testing
+
+
 For future improvements:
 -	Add feature augmentation: as I have discussed before, an average of 50 samples is provided for each dog breed, this might be a bit to small to train a complex model with 100 different classes. Augmenting the input data might be able to add to the robustness of the model.
 -	Add more training data: for the same reasons as provided above.
